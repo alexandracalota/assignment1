@@ -22,7 +22,7 @@ public class SinglyLinkedList {
 			last = current;
 			length++;
 		}
-			}
+	}
 	
 	public Node getFirst() {
 		return first;
