@@ -9,16 +9,16 @@ public class Node {
 		rightSon = null;
 	}
 
-	public void insertNode(int key, int parentKey, String position) {
+	public void insertNode(int key, int parentKey, char position) {
 
 		if (this.key == parentKey) {
 			switch (position) {
-			case "L":
+			case 'L':
 				if (leftSon == null) {
 					leftSon = new Node(key);
 				}
 				break;
-			case "R":
+			case 'R':
 				if (rightSon == null) {
 					rightSon = new Node(key);
 				}
@@ -99,7 +99,7 @@ public class Main {
 	
 	
 	/******************** Question 1 ********************/
-	public static Boolean auxQ1(Stack<Node> parents, int key, Node root) {
+	public static boolean createParentsStack(Stack<Node> parents, int key, Node root) {
 		if (root == null)
 			return false;
 
@@ -118,7 +118,7 @@ public class Main {
 
 		Stack<Node> parents = new Stack<Node>();
 
-		auxQ1(parents, key, root);
+		createParentsStack(parents, key, root);
 
 		System.out.print("Ancestors: ");
 
