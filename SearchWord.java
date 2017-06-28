@@ -7,11 +7,11 @@ public class SearchWord {
 	public LinkedList<String> wordSearch(int rows, int columns, char[][] characters, Dictionary dict) {
 
 		LinkedList<String> validWords = new LinkedList<String>();
-		visited = new int[rows][columns];
+		visited = new boolean[rows][columns];
 
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				visited[i][j] = 0;
+				visited[i][j] = false;
 			}
 		}
 
@@ -32,7 +32,7 @@ public class SearchWord {
 				validWords.add(word);
 		}
 
-		if (!dict.isPrefix(word) || visited[posX][posY] == 1) {
+		if (!dict.isPrefix(word) || visited[posX][posY]) {
 			return;
 		}
 
@@ -40,7 +40,7 @@ public class SearchWord {
 
 			int[] offset = { -1, 0, 1 };
 
-			visited[posX][posY] = 1;
+			visited[posX][posY] = true;
 
 			for (int i = 0; i < offset.length; i++) {
 				for (int j = 0; j < offset.length; j++) {
@@ -54,6 +54,6 @@ public class SearchWord {
 			}
 		}
 
-		visited[posX][posY] = 0;
+		visited[posX][posY] = false;
 	}
 }
