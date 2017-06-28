@@ -1,12 +1,13 @@
 import java.util.LinkedList;
+import java.util.HashSet;
 
 public class SearchWord {
 
-	public int[][] visited;
+	public boolean[][] visited;
 
-	public LinkedList<String> wordSearch(int rows, int columns, char[][] characters, Dictionary dict) {
+	public HashSet<String> wordSearch(int rows, int columns, char[][] characters, Dictionary dict) {
 
-		LinkedList<String> validWords = new LinkedList<String>();
+		HashSet<String> validWords = new HashSet<String>();
 		visited = new boolean[rows][columns];
 
 		for (int i = 0; i < rows; i++) {
@@ -17,7 +18,7 @@ public class SearchWord {
 
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				applyBFS(rows, columns, i, j, characters, dict, validWords, "");
+				applyDFS(rows, columns, i, j, characters, dict, validWords, "");
 			}
 		}
 
@@ -25,7 +26,7 @@ public class SearchWord {
 	}
 
 	public void applyDFS(int rows, int columns, int posX, int posY, char[][] characters, Dictionary dict,
-			LinkedList<String> validWords, String word) {
+			HashSet<String> validWords, String word) {
 
 		if (dict.isWord(word)) {
 			if (!validWords.contains(word))
@@ -48,7 +49,7 @@ public class SearchWord {
 					int newY = posY + offset[j];
 
 					if (0 <= newX && newX < rows && 0 <= newY && newY < columns) {
-						applyBFS(rows, columns, newX, newY, characters, dict, validWords, word + characters[posX][posY]);
+						applyDFS(rows, columns, newX, newY, characters, dict, validWords, word + characters[posX][posY]);
 					}
 				}
 			}
