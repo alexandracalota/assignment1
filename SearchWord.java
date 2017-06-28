@@ -24,7 +24,7 @@ public class SearchWord {
 		return validWords;
 	}
 
-	public void applyBFS(int rows, int columns, int posX, int posY, char[][] characters, Dictionary dict,
+	public void applyDFS(int rows, int columns, int posX, int posY, char[][] characters, Dictionary dict,
 			LinkedList<String> validWords, String word) {
 
 		if (dict.isWord(word)) {
