@@ -1,24 +1,30 @@
-import java.util.LinkedList;
+import java.util.HashSet;
 
 public class Dictionary {
-	private LinkedList<String> words;
-	private LinkedList<String> prefixes;
+	private HashSet<String> words;
+	private HashSet<String> prefixes;
 
-	public Dictionary(LinkedList<String> words) {
-		this.words = words;
-		this.prefixes = new LinkedList<String>();
+	public Dictionary() {
+		this.words = new HashSet<String>();
+		this.prefixes = new HashSet<String>();
 		prefixes.add("");
-		for (String word : words) {
-			addWord(word);
-		}
 	}
 
-	private void addWord(String word) {
+	public Dictionary(HashSet<String> words) {
+		this();
+		setWords(words);
+	}
 
-		for (int i = 0; i < word.length(); i++) {
-			String prefix = word.substring(0, i + 1);
-			if (!prefixes.contains(prefix))
-				prefixes.add(prefix);
+	private void setWords(HashSet<String> words) {
+
+		for (String word : words) {
+			this.words.add(word);
+
+			for (int i = 0; i < word.length(); i++) {
+				String prefix = word.substring(0, i + 1);
+				if (!prefixes.contains(prefix))
+					prefixes.add(prefix);
+			}
 		}
 
 	}
@@ -31,19 +37,11 @@ public class Dictionary {
 		return prefixes.contains(prefix);
 	}
 
-	public LinkedList<String> getWords() {
+	public HashSet<String> getWords() {
 		return words;
 	}
 
-	public void setWords(LinkedList<String> words) {
-		this.words = words;
-	}
-
-	public LinkedList<String> getPrefixes() {
+	public HashSet<String> getPrefixes() {
 		return prefixes;
-	}
-
-	public void setPrefixes(LinkedList<String> prefixes) {
-		this.prefixes = prefixes;
 	}
 }
